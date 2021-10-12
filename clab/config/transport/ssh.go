@@ -198,7 +198,7 @@ func (t *SSHTransport) Run(command string, timeout int) *SSHReply {
 				if DebugCount > 1 {
 					log.Debugf("+")
 				}
-				timeout = 2 // reduce timeout, node is already sending data
+				// RDodin: removing this, as a single command may take longer than 2sec to complete timeout = 2 // reduce timeout, node is already sending data
 				continue
 			}
 
@@ -251,7 +251,7 @@ func (t *SSHTransport) Write(data, info *string) error {
 			continue
 		}
 		c += 1
-		t.Run(l, 5).Info(t.Target)
+		t.Run(l, 10).Info(t.Target)
 	}
 
 	if transaction {
