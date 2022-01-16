@@ -71,6 +71,7 @@ var kinds = []string{
 	"mysocketio",
 	"host",
 	"cvx",
+	"ixiac-cntl",
 	"ixia-c",
 }
 

@@ -10,6 +10,8 @@ import (
 	_ "github.com/srl-labs/containerlab/nodes/crpd"
 	_ "github.com/srl-labs/containerlab/nodes/cvx"
 	_ "github.com/srl-labs/containerlab/nodes/host"
+	_ "github.com/srl-labs/containerlab/nodes/ixia_c"
+	_ "github.com/srl-labs/containerlab/nodes/ixiac_cntl"
 	_ "github.com/srl-labs/containerlab/nodes/linux"
 	_ "github.com/srl-labs/containerlab/nodes/mysocketio"
 	_ "github.com/srl-labs/containerlab/nodes/ovs"
@@ -27,5 +29,4 @@ import (
 	_ "github.com/srl-labs/containerlab/nodes/vr_vqfx"
 	_ "github.com/srl-labs/containerlab/nodes/vr_xrv"
 	_ "github.com/srl-labs/containerlab/nodes/vr_xrv9k"
-	_ "github.com/srl-labs/containerlab/nodes/ixia_c"
 )

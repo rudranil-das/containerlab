@@ -1,0 +1,7 @@
+name: ixiac01
+
+topology:
+  nodes:
+    ixia-controller:
+      kind: ixiac-cntl
+      image: ixiacom/ixia-c-controller
