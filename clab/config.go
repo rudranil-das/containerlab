@@ -72,7 +72,7 @@ var kinds = []string{
 	"host",
 	"cvx",
 	"ixiac-cntl",
-	"ixia-c",
+	"ixiac-te",
 }
 
 // Config defines lab configuration as it is provided in the YAML file
