@@ -1,0 +1,29 @@
+name: ixiac01
+
+topology:
+  kinds:
+    ixiac-cntl:
+      image: ixiacom/ixia-c-controller:0.0.1-2543
+      network-mode: host
+    ixiac-te:
+      image: ixiacom/ixia-c-traffic-engine:1.4.1.2
+      network-mode: host
+  nodes:
+    ixiac-controller:
+      kind: ixiac-cntl
+      env:
+        ACCEPT_EULA: "Yes"
+        HTTP_PORT: "8080"
+        DISABLE_USAGE_REPORT: "Yes"
+    ixiac-traffic-engine-1:
+      kind: ixiac-te
+      env:
+        OPT_LISTEN_PORT: "5555"
+        ARG_IFACE_LIST: "virtual@af_packet,veth1"
+        OPT_NO_HUGEPAGES: "Yes"
+    ixiac-traffic-engine-2:
+      kind: ixiac-te
+      env:
+        OPT_LISTEN_PORT: "5556"
+        ARG_IFACE_LIST: "virtual@af_packet,veth2"
+        OPT_NO_HUGEPAGES: "Yes"
