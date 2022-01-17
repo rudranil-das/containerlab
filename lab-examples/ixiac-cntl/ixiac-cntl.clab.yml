@@ -5,3 +5,9 @@ topology:
     ixia-controller:
       kind: ixiac-cntl
       image: ixiacom/ixia-c-controller
+      env:
+        ACCEPT_EULA: "Yes"
+        HTTP_PORT: "8080"
+        DISABLE_USAGE_REPORT: "Yes"
+      ports:
+        - 35201:8080

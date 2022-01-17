@@ -11,6 +11,7 @@ import (
 	"github.com/srl-labs/containerlab/nodes"
 	"github.com/srl-labs/containerlab/runtime"
 	"github.com/srl-labs/containerlab/types"
+	"github.com/srl-labs/containerlab/utils"
 )
 
 func init() {
@@ -30,8 +31,28 @@ func (l *ixiacCntl) Init(cfg *types.NodeConfig, opts ...nodes.NodeOption) error 
 		o(l)
 	}
 
+	defEnv := map[string]string{
+		"ACCEPT_EULA":          "No",
+		"HTTP_PORT":            "443",
+		"DISABLE_USAGE_REPORT": "No",
+		"DEBUG":                "No",
+	}
+	l.cfg.Env = utils.MergeStringMaps(defEnv, l.cfg.Env)
+
 	var envSb strings.Builder
-	envSb.WriteString("--accept-eula ")
+	if l.cfg.Env["ACCEPT_EULA"] == "Yes" {
+		envSb.WriteString(" --accept-eula")
+	}
+	if l.cfg.Env["HTTP_PORT"] != "443" {
+		envSb.WriteString(" --http-port " + l.cfg.Env["HTTP_PORT"])
+	}
+	if l.cfg.Env["DISABLE_USAGE_REPORT"] == "Yes" {
+		envSb.WriteString(" --disable-app-usage-reporter")
+	}
+	if l.cfg.Env["DEBUG"] == "Yes" {
+		envSb.WriteString(" --debug")
+	}
+
 	l.cfg.Cmd = envSb.String()
 
 	return nil
