@@ -47,6 +47,7 @@ const (
 	NodeKindVrNXOS     = "vr-nxos"
 	NodeKindIXIACCntl  = "ixiac-cntl"
 	NodeKindIXIACTE    = "ixiac-te"
+	NodeKindIXIACAUR   = "ixiac-aur"
 )
 
 // a map of node kinds overriding the default global runtime

@@ -8,13 +8,15 @@ topology:
     ixiac-te:
       image: ixiacom/ixia-c-traffic-engine:1.4.1.2
       network-mode: host
+    ixiac-aur:
+      image: ixiacom/ixia-c-app-usage-reporter:0.0.1-37
+      network-mode: host
   nodes:
     ixiac-controller:
       kind: ixiac-cntl
       env:
         ACCEPT_EULA: "Yes"
         HTTP_PORT: "8080"
-        DISABLE_USAGE_REPORT: "Yes"
     ixiac-traffic-engine-1:
       kind: ixiac-te
       env:
@@ -27,3 +29,7 @@ topology:
         OPT_LISTEN_PORT: "5556"
         ARG_IFACE_LIST: "virtual@af_packet,veth2"
         OPT_NO_HUGEPAGES: "Yes"
+    ixiac-app-usage-reporter:
+      kind: ixiac-aur
+      env:
+        PORT: "5700"
