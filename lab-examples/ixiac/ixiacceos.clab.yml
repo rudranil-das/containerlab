@@ -1,0 +1,42 @@
+name: ixiacceos
+
+topology:
+  kinds:
+    ixiac-cntl:
+      image: ixiacom/ixia-c-controller:0.0.1-2543
+      network-mode: host
+    ixiac-te:
+      image: ixiacom/ixia-c-traffic-engine:1.4.1.2
+      network-mode: host
+    ixiac-aur:
+      image: ixiacom/ixia-c-app-usage-reporter:0.0.1-37
+      network-mode: host
+  nodes:
+    ixiac-controller:
+      kind: ixiac-cntl
+      env:
+        ACCEPT_EULA: "Yes"
+        HTTP_PORT: "8080"
+    ixiac-te-1:
+      kind: ixiac-te
+      env:
+        OPT_LISTEN_PORT: "5555"
+        ARG_IFACE_LIST: "virtual@af_packet,veth1"
+        OPT_NO_HUGEPAGES: "Yes"
+    ixiac-te-2:
+      kind: ixiac-te
+      env:
+        OPT_LISTEN_PORT: "5556"
+        ARG_IFACE_LIST: "virtual@af_packet,veth2"
+        OPT_NO_HUGEPAGES: "Yes"
+    ixiac-app-usage-reporter:
+      kind: ixiac-aur
+      env:
+        PORT: "5700"
+    ceos:
+      kind: ceos
+      image: ceos:4.26.1F
+
+  links:
+    - endpoints: ["ceos:eth1", "host:veth1"]
+    - endpoints: ["ceos:eth2", "host:veth2"]
