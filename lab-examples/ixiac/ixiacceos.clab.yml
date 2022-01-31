@@ -3,11 +3,15 @@ name: ixiacceos
 topology:
   kinds:
     ixiac-cntl:
-      image: ixiacom/ixia-c-controller:0.0.1-2543
+      image: ixiacom/ixia-c-controller:0.0.1-2597
       network-mode: host
+      env:
+        ACCEPT_EULA: "Yes"
     ixiac-te:
       image: ixiacom/ixia-c-traffic-engine:1.4.1.2
       network-mode: host
+      env:
+        OPT_NO_HUGEPAGES: "Yes"
     ixiac-aur:
       image: ixiacom/ixia-c-app-usage-reporter:0.0.1-37
       network-mode: host
@@ -15,20 +19,19 @@ topology:
     ixiac-controller:
       kind: ixiac-cntl
       env:
-        ACCEPT_EULA: "Yes"
         HTTP_PORT: "8080"
     ixiac-te-1:
       kind: ixiac-te
       env:
         OPT_LISTEN_PORT: "5555"
         ARG_IFACE_LIST: "virtual@af_packet,veth1"
-        OPT_NO_HUGEPAGES: "Yes"
+        ARG_CORE_LIST: "2 3 4"
     ixiac-te-2:
       kind: ixiac-te
       env:
         OPT_LISTEN_PORT: "5556"
         ARG_IFACE_LIST: "virtual@af_packet,veth2"
-        OPT_NO_HUGEPAGES: "Yes"
+        ARG_CORE_LIST: "2 5 6"
     ixiac-app-usage-reporter:
       kind: ixiac-aur
       env:
