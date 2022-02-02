@@ -36,6 +36,7 @@ topology:
     ceos:
       kind: ceos
 
+# interfaces host:veth* used by ixiac-te nodes are created automatically
   links:
     - endpoints: ["ceos:eth1", "host:veth1"]
     - endpoints: ["ceos:eth2", "host:veth2"]
