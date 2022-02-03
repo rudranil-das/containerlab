@@ -1,5 +1,5 @@
 # Requires the veth interfaces used by ixiac-te nodes to be created before deploy
-name: ixiacb2b
+name: ixiacb2b01
 
 topology:
   kinds:
