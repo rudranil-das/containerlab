@@ -9,13 +9,12 @@ topology:
       env:
         ACCEPT_EULA: "Yes"
     ixiac-te:
-      image: ixiacom/ixia-c-traffic-engine:1.4.1.2
+      image: ixiacom/ixia-c-traffic-engine:1.4.1.5
       network-mode: host
       env:
         OPT_NO_HUGEPAGES: "Yes"
-    ixiac-aur:
-      image: ixiacom/ixia-c-app-usage-reporter:0.0.1-37
-      network-mode: host
+        WAIT_FOR_IFACE: "Yes"
+        OPT_NO_PINNING: "Yes"
 
   nodes:
     ixiac-controller:
@@ -27,14 +26,8 @@ topology:
       env:
         OPT_LISTEN_PORT: "5555"
         ARG_IFACE_LIST: "virtual@af_packet,veth1"
-        ARG_CORE_LIST: "2 3 4"
     ixiac-te-2:
       kind: ixiac-te
       env:
         OPT_LISTEN_PORT: "5556"
         ARG_IFACE_LIST: "virtual@af_packet,veth2"
-        ARG_CORE_LIST: "2 5 6"
-    ixiac-app-usage-reporter:
-      kind: ixiac-aur
-      env:
-        PORT: "5700"
