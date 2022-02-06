@@ -37,8 +37,16 @@ topology:
         - 32003:5555
     ceos-1:
       kind: ceos
+      startup-config: enable_ssh_ceos.cfg
+      enforce-startup-config: true
+      ports:
+        - 36001:22
     ceos-2:
       kind: ceos
+      startup-config: enable_ssh_ceos.cfg
+      enforce-startup-config: true
+      ports:
+        - 36002:22
 
   links:
     - endpoints: ["ixiac-te-1:eth1", "ceos-1:eth1"]
