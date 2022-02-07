@@ -1,0 +1,48 @@
+name: ixiacceos03
+
+topology:
+  kinds:
+    ixiac-cntl:
+      image: ixiacom/ixia-c-controller:0.0.1-2597
+    ixiac-te:
+      image: ixiacom/ixia-c-traffic-engine:1.4.1.5
+    ceos:
+      image: ceos:4.26.1F 
+  nodes:
+    ixiac-controller:
+      kind: ixiac-cntl
+      ports:
+        - 8080:443
+    ixiac-te-1:
+      kind: ixiac-te  
+      ports:
+        - 32001:5555
+        - 30001:50071
+    ixiac-te-2:
+      kind: ixiac-te
+      ports:
+        - 32002:5555
+        - 30002:50071
+    ixiac-te-3:
+      kind: ixiac-te
+      ports:
+        - 32003:5555
+        - 30003:50071
+    ceos-1:
+      kind: ceos
+      startup-config: enable_ssh_ceos.cfg
+      enforce-startup-config: true
+      ports:
+        - 36001:22
+    ceos-2:
+      kind: ceos
+      startup-config: enable_ssh_ceos.cfg
+      enforce-startup-config: true
+      ports:
+        - 36002:22
+
+  links:
+    - endpoints: ["ixiac-te-1:eth1", "ceos-1:eth1"]
+    - endpoints: ["ceos-1:eth2", "ceos-2:eth1"]
+    - endpoints: ["ceos-2:eth2", "ixiac-te-2:eth1"]
+    - endpoints: ["ceos-2:eth3", "ixiac-te-3:eth1"]
