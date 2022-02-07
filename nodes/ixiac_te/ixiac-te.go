@@ -32,9 +32,11 @@ func (l *ixiacTE) Init(cfg *types.NodeConfig, opts ...nodes.NodeOption) error {
 	}
 
 	defEnv := map[string]string{
-		"OPT_LISTEN_PORT":  "5555",
-		"ARG_IFACE_LIST":   "virtual@af_packet,veth1",
 		"OPT_NO_HUGEPAGES": "Yes",
+		"WAIT_FOR_IFACE":   "Yes",
+		"OPT_NO_PINNING":   "Yes",
+		"OPT_LISTEN_PORT":  "5555",
+		"ARG_IFACE_LIST":   "virtual@af_packet,eth1",
 	}
 	l.cfg.Env = utils.MergeStringMaps(defEnv, l.cfg.Env)
 
