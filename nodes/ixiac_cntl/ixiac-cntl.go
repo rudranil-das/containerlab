@@ -32,7 +32,7 @@ func (l *ixiacCntl) Init(cfg *types.NodeConfig, opts ...nodes.NodeOption) error 
 	}
 
 	defEnv := map[string]string{
-		"ACCEPT_EULA":          "No",
+		"ACCEPT_EULA":          "Yes",
 		"HTTP_PORT":            "443",
 		"DISABLE_USAGE_REPORT": "No",
 		"DEBUG":                "No",
