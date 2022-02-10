@@ -74,6 +74,7 @@ var kinds = []string{
 	"ixiac-cntl",
 	"ixiac-te",
 	"ixiac-aur",
+	"ixiac-one",
 }
 
 // Config defines lab configuration as it is provided in the YAML file

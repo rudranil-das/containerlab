@@ -12,6 +12,7 @@ import (
 	_ "github.com/srl-labs/containerlab/nodes/host"
 	_ "github.com/srl-labs/containerlab/nodes/ixiac_aur"
 	_ "github.com/srl-labs/containerlab/nodes/ixiac_cntl"
+	_ "github.com/srl-labs/containerlab/nodes/ixiac_one"
 	_ "github.com/srl-labs/containerlab/nodes/ixiac_te"
 	_ "github.com/srl-labs/containerlab/nodes/linux"
 	_ "github.com/srl-labs/containerlab/nodes/mysocketio"
